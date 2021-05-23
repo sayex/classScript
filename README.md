@@ -11,7 +11,7 @@ chmod +x script.sh #first time only
 ./script.sh
 ```
 
-Will create a .cfg file in users's Home Directory
+Will create a .cfg file in user's Home Directory
 
 License MIT  
 Author Tmaxxer & Sayex

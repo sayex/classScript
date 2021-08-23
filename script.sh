@@ -35,7 +35,7 @@ fi
 
 while :
 do
-    if [ ! -d $path/01-Class-Content ]
+    if [ ! -d "$path/01-Class-Content" ]
     then
         echo -e "-----------------\n\"$path\" does not exist or seems incorrect.  Please try again"
         getPath
@@ -68,7 +68,7 @@ fi
 
 while :
 do
-    if [ ! -d $path ]
+    if [ ! -d "$path" ]
     then
         echo -e "-----------------\n \"$path\" does not exist.  Please try again"
         getPath
@@ -88,14 +88,14 @@ tempUnit=$zeros$unit
 unit=${tempUnit:(-2)}
 
 echo "Unit - $unit"
-mainPathUnit=$(find $mainPath -maxdepth 1 -mindepth 1 -name "$unit*")
-echo $mainPathUnit
-cp -a $mainPathUnit $classPath
-classPathUnit=$(find $classPath -maxdepth 1 -mindepth 1 -name "$unit*")
-find $classPathUnit -mindepth 1 -iname "solved" -type d -exec rm -rf {} +
-find $classPathUnit -mindepth 1 -iname "main" -type d -exec rm -rf {} +
+mainPathUnit=$(find "$mainPath" -maxdepth 1 -mindepth 1 -name "$unit*")
+echo "$mainPathUnit"
+cp -a "$mainPathUnit" "$classPath"
+classPathUnit=$(find "$classPath" -maxdepth 1 -mindepth 1 -name "$unit*")
+find "$classPathUnit" -mindepth 1 -iname "solved" -type d -exec rm -rf {} +
+find "$classPathUnit" -mindepth 1 -iname "main" -type d -exec rm -rf {} +
 
-cd $classPathUnit
+cd "$classPathUnit"
 
 echo -e '-----------------\n Do you want to do a commit? y/n'
 read commitVerify
@@ -112,8 +112,8 @@ read copySolved
 
 if [ $copySolved == "y" ] || [ $copySolved == "Y" ]
 then
-    cp -an $mainPathUnit $classPath
-    find $classPathUnit -mindepth 1 -iname "main" -type d -exec rm -rf {} +
+    cp -an "$mainPathUnit" "$classPath"
+    find "$classPathUnit" -mindepth 1 -iname "main" -type d -exec rm -rf {} +
 fi
 
 

@@ -101,6 +101,23 @@ echo -e '-----------------\n Do you want to do a commit? y/n'
 read commitVerify
 if [ $commitVerify == "y" ] || [ $commitVerify == "Y" ]
 then
+    if [ -z "$sshKeyPath" ]
+    then
+        echo -e "-----------------\n Enter path to your SSH private key"
+        getPath
+    else   
+        echo -e "-----------------\n SSH private key path \"$sshKeyPath\" previously used.  Use again? y/n"
+        
+        read useAgain
+        if [ $useSSHAgain == 'y' ] || [ $useSSHAgain == 'Y' ]
+        then
+            path=$sshKeyPath
+        else
+            echo -e "-----------------\n Enter file path to SSH Private key"
+            getPath
+        fi
+
+    fi
     git add .
     git commit -m "Unit $unit initial commit"
     git push
